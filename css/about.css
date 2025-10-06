@@ -1,0 +1,112 @@
+
+    /* =====================
+       About Page Styles
+    ===================== */
+    .specials-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 0 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: #333;
+    }
+
+    .specials-container h1 {
+        text-align: center;
+        color: #E63946;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 20px;
+    }
+
+    .specials-container h2 {
+        color: #E63946;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .specials-container p,
+    .specials-container ul {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .specials-container ul li {
+        margin: 10px 0;
+    }
+
+    .centered-text {
+        text-align: center;
+        margin-top: 30px;
+        gap: 15px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .main-btn {
+        background: #E63946;
+        color: #fff;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+    }
+
+    .main-btn:hover {
+        background: #F1FA3C;
+        color: #E63946;
+        transform: translateY(-2px);
+    }
+
+    /* =====================
+       Slider Styles
+    ===================== */
+    #slider {
+        position: relative;
+        max-width: 100%;
+        margin: 30px auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .slide {
+        width: 100%;
+        display: none;
+        border-radius: 15px;
+    }
+
+    #prev, #next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(230,57,70,0.8);
+        color: #fff;
+        border: none;
+        font-size: 2rem;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    #prev:hover, #next:hover {
+        background: #F1FA3C;
+        color: #E63946;
+    }
+
+    #prev { left: 10px; }
+    #next { right: 10px; }
+
+    /* Responsive slider images */
+    @media screen and (max-width: 768px) {
+        #prev, #next {
+            font-size: 1.5rem;
+            padding: 8px 12px;
+        }
+    }
+  

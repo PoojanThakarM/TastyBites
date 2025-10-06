@@ -1,0 +1,128 @@
+/* =========================
+   Navbar
+========================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #E63946;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.restaurant-logo {
+    color: #fff;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #F1FA3C;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.auth-buttons a {
+    background-color: #F1FA3C;
+    color: #E63946;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    background-color: #ffe600;
+    transform: translateY(-2px);
+}
+
+.profile-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #F1FA3C;
+    color: #E63946;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 60px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    min-width: 180px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    font-weight: bold;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.dropdown p {
+    margin: 0;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s ease;
+}
+
+.dropdown a:hover {
+    background-color: #f7f7f7;
+}
+
+/* Responsive Navbar */
+@media(max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+    .navbar {
+        flex-wrap: wrap;
+    }
+}
+.restaurant-title {
+    text-align: center;
+    font-size: 2.2rem;
+    padding: 20px 0;
+    background-color: #E63946;
+    color: #fff;
+    margin: 0;
+    
+}

@@ -1,0 +1,56 @@
+.restaurant-footer {
+    background: #E63946; /* warm red for restaurant theme */
+    color: #fff;
+    padding: 30px 20px 10px 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #F1FA3C; /* bright yellow accent */
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+/* Footer text color */
+footer {
+    color: #fff; /* all text inside footer becomes white */
+}
+
+/* Optional: links in footer */
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #F1FA3C; /* yellow on hover for visibility */
+}
