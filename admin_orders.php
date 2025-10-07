@@ -8,11 +8,18 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-// Update Order Status
-if (isset($_POST['update'])) {
-    $stmt = $conn->prepare("UPDATE orders SET status = ? WHERE id = ?");
-    $stmt->bind_param("si", $_POST['status'], $_POST['id']);
-    $stmt->execute();
+$message = "";
+$orders = [];
+
+// Update Order Status and Payment Status
+if (isset($_POST['update']) && isset($_POST['id'])) {
+    $stmt = $conn->prepare("UPDATE orders SET status = ?, payment_status = ? WHERE id = ?");
+    $stmt->bind_param("ssi", $_POST['status'], $_POST['payment_status'], $_POST['id']);
+    if ($stmt->execute()) {
+        $message = "Order #" . $_POST['id'] . " updated successfully.";
+    } else {
+        $message = "Failed to update order #" . $_POST['id'] . ".";
+    }
     $stmt->close();
     // Redirect to avoid form resubmission
     header("Location: admin_orders.php");
@@ -103,8 +110,8 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             background: #b32636;
         }
 
-        /* Status Dropdown */
-        .status-select {
+        /* Status Dropdowns */
+        .status-select, .payment-select {
             padding: 6px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -113,7 +120,7 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             cursor: pointer;
             width: 120px;
         }
-        .status-select:focus {
+        .status-select:focus, .payment-select:focus {
             outline: none;
             border-color: #457B9D;
         }
@@ -125,6 +132,14 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             max-width: 200px;
             word-wrap: break-word;
         }
+
+        /* Message */
+        .message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -132,6 +147,7 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
     <div class="admin-main">
         <h2>📋 Manage Orders</h2>
+        <?php if (!empty($message)) echo "<p class='message'>$message</p>"; ?>
 
         <table>
             <tr>
@@ -142,7 +158,8 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
                 <th>Address</th>
                 <th>Items</th>
                 <th>Total</th>
-                <th>Status</th>
+                <th>Order Status</th>
+                <th>Payment Status</th>
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
@@ -166,6 +183,19 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
                                     <option value="Delivered" <?= $order['status'] === 'Delivered' ? 'selected' : '' ?>>Delivered</option>
                                     <option value="Cancelled" <?= $order['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                 </select>
+                                <input type="hidden" name="payment_status" value="<?= $order['payment_status'] ?>">
+                                <input type="hidden" name="update" value="1">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= $order['id'] ?>">
+                                <select name="payment_status" class="payment-select" onchange="this.form.submit()">
+                                    <option value="Pending" <?= $order['payment_status'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                    <option value="Completed" <?= $order['payment_status'] === 'Completed' ? 'selected' : '' ?>>Completed</option>
+                                    <option value="Failed" <?= $order['payment_status'] === 'Failed' ? 'selected' : '' ?>>Failed</option>
+                                </select>
+                                <input type="hidden" name="status" value="<?= $order['status'] ?>">
                                 <input type="hidden" name="update" value="1">
                             </form>
                         </td>
@@ -180,7 +210,7 @@ $orders = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="10">No orders yet.</td></tr>
+                <tr><td colspan="11">No orders yet.</td></tr>
             <?php endif; ?>
         </table>
     </div>
