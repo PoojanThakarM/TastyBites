@@ -50,5 +50,5 @@ A web application for managing restaurant orders, FAQs, reservations, and user r
 - Admin Orders: `admin_orders.php` showing payment status.
 
 ## Notes
-- The payment system is a mock implementation for demonstration. For real transactions, integrate a payment gateway like Razorpay or Stripe.
+
 - Ensure `menu_items` table has data for order items to work.
